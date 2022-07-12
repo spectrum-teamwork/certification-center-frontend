@@ -1,0 +1,27 @@
+@use "sass-rem" as to;
+
+*, a {
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  font-weight: 600;
+  font-family: Gilroy, sans-serif;
+}
+
+h1 {
+  font-size: to.rem(74px);
+  @media (max-width: 576px) {
+    font-size: to.rem(60px);
+  }
+}
+
+h2 {
+  font-size: to.rem(50px);
+  @media (max-width: 576px) {
+    font-size: to.rem(40px);
+  }
+}

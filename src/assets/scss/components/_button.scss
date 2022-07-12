@@ -1,0 +1,19 @@
+@use "sass-rem" as to;
+
+button, .button {
+  border: none;
+  padding: 27px 73px;
+  font-size: to.rem(17px);
+  background-color: var(--secondary-color);
+  color: var(--white);
+  border-radius: 20px;
+  cursor: default;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color var(--animation-duration) ease;
+
+  &:hover, &:focus, &:active {
+    background-color: var(--primary-color);
+  }
+}
