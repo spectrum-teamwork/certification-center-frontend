@@ -14,6 +14,7 @@
         </div>
         <div class="col-12 col-lg-6">
           <csd-city-card
+            class="mt-5 mt-lg-0"
             city="Краснодар"
             phone="8 (800) 600-17-44"
             address="ул. Адмирала, Крузенштерна, дом 6"
@@ -35,7 +36,6 @@ import CsdCityCard from '../components/CsdCityCard'
 export default {
   name: 'Contacts',
   components: { CsdCityCard, CsdPostHeader, CsdLeaveOrderSection }
-
 }
 </script>
 

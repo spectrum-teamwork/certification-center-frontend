@@ -1,18 +1,18 @@
 <template>
   <div class="csd-city-card">
     <p class="csd-city-card__contact-heading" v-text="`г. ${city}`"/>
-    <p class="csd-city-card__contact-row">
+    <div class="csd-city-card__contact-row">
       <icon-phone class="csd-city-card__contact-icon"/>
       <a class="csd-city-card__contact-data" :href="`tel:${formattedPhone}`" v-text="phone"/>
-    </p>
-    <p class="csd-city-card__contact-row">
+    </div>
+    <div class="csd-city-card__contact-row">
       <icon-location class="csd-city-card__contact-icon"/>
       <span class="csd-city-card__contact-data" v-text="address"/>
-    </p>
-    <p class="csd-city-card__contact-row">
+    </div>
+    <div class="csd-city-card__contact-row">
       <icon-envelope class="csd-city-card__contact-icon"/>
       <a class="csd-city-card__contact-data" :href="`mailto:${email}`" v-text="email"/>
-    </p>
+    </div>
     <iframe
       :src="map" frameborder="0"
       width="100%"

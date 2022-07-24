@@ -42,6 +42,7 @@
       <div class="row" v-if="windowSize.width < breakpoint">
         <div class="col-12">
           <csd-slider-arrows
+            class="mx-auto"
             @prev="handleSlidePrev"
             @next="handleSlideNext"
           />
@@ -94,17 +95,9 @@ export default {
     this.swiper = new Swiper('.swiper-news', {
       speed: 400,
       loop: true,
-      slidesPerView: 1,
+      slidesPerView: 2,
       spaceBetween: 10,
       breakpoints: {
-        320: {
-          slidesPerView: 1,
-          spaceBetween: 20
-        },
-        576: {
-          slidesPerView: 2,
-          spaceBetween: 20
-        },
         992: {
           slidesPerView: 3,
           spaceBetween: 20
@@ -118,7 +111,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-
-</style>

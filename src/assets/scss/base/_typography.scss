@@ -13,15 +13,35 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: to.rem(74px);
+  font-size: 74px;
   @media (max-width: 576px) {
-    font-size: to.rem(60px);
+    font-size: 60px;
   }
 }
 
 h2 {
-  font-size: to.rem(50px);
+  font-size: 50px;
   @media (max-width: 576px) {
-    font-size: to.rem(40px);
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 767.8px) {
+  h1 {
+    font-size: 30px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 991.8px) {
+  h1 {
+    font-size: 40px;
+  }
+
+  h2 {
+    font-size: 30px;
   }
 }

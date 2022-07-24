@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <g-image
+          <g-image quality="80"
             class="d-xl-none mb-5"
             :src="'/assets/img/news/1.png'"
             style="width: 100%; object-fit: contain; border-radius: 20px; overflow: hidden;"
@@ -37,7 +37,7 @@
           </div>
         </div>
         <div class="col-xl-5">
-          <g-image
+          <g-image quality="80"
             class="d-none d-xl-flex"
             :src="'/assets/img/news/1.png'"
             style="width: 100%; object-fit: contain; border-radius: 20px; overflow: hidden;"

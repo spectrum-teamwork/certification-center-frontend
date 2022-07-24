@@ -15,16 +15,19 @@ $baseline: 15px;
   --dusty-gray: #9a9a9a;
 
   --animation-duration: 0.3s;
-
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991.8px) {
   :root {
-    --base-font-size: 13px;
+    --base-font-size: 14px;
   }
 }
-
-@media (max-width: 508px) {
+@media (max-width: 767.8px) {
+  :root {
+    --base-font-size: 12px;
+  }
+}
+@media (max-width: 575.8px) {
   :root {
     --base-font-size: 12px;
   }

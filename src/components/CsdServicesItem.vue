@@ -1,10 +1,10 @@
 <template>
-  <div class="service">
+  <article class="service">
     <div class="service__icon">
-      <img :src="icon" alt="">
+      <g-image quality="80" :src="icon" alt=""/>
     </div>
     <div class="service__image-wrapper">
-      <g-image :src="image.toString()"/>
+      <g-image quality="80" :src="image.toString()"/>
     </div>
     <div class="service__name-wrapper">
       <span :title="name" class="service__name">{{ name }}</span>
@@ -12,7 +12,7 @@
     <div class="service__link-wrapper">
       <g-link class="service__link" :to="to">Подробнее</g-link>
     </div>
-  </div>
+  </article>
 </template>
 
 <script lang="ts">

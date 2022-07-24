@@ -3,11 +3,11 @@
     <template v-if="$page.services">
       <csd-service-post
         :price="$page.services.price"
-        :heading="$page.services.post.heading"
-        :content="$page.services.post.content"
-        :cert-image="$page.services.post.requirements.image"
-        :requirements="$page.services.post.requirements.content"
-        :requirements-heading="$page.services.post.requirements.heading"
+        :heading="$page.services.title"
+        :content="$page.services.description"
+        :cert-image="imageById($page.services.image_document_id)"
+        :requirements="$page.services.requirements"
+        :requirements-heading="requirementsHeadings[$page.services.service_type]"
       />
     </template>
   </Layout>
@@ -17,15 +17,11 @@ query ($serviceId: ID) {
   services (id: $serviceId) {
     id
     price
-    post {
-      heading
-      content
-      requirements {
-        image
-        heading
-        content
-      }
-    }
+    title
+    description
+    service_type
+    requirements
+    image_document_id
   }
 }
 </page-query>
@@ -34,9 +30,19 @@ import CsdPageFooter from '~/components/CsdPageFooter'
 import CsdHeader from '~/components/CsdHeader'
 import CsdBackwardButton from '~/components/CsdBackwardButton'
 import CsdServicePost from '../../components/CsdServicePost'
+import imageById from '../../mixins/imageById'
 
 export default {
   name: 'Service',
+  mixins: [imageById],
+  data() {
+    return {
+      requirementsHeadings: {
+        testing: 'Для регистрации декларации и получения протокола испытаний, требуется',
+        certification: 'Для регистрации декларации и получения протокола испытаний, требуется',
+      }
+    }
+  },
   components: { CsdServicePost, CsdBackwardButton, CsdHeader, CsdPageFooter }
 }
 </script>

@@ -21,10 +21,10 @@
               <template v-for="{node} in $static.allServices.edges">
                 <div class="swiper-slide d-flex align-items-stretch">
                   <csd-services-item
-                    :to="node.to"
-                    :name="node.name"
-                    :icon="node.icon"
-                    :image="node.image"
+                    :name="node.title"
+                    :to="`/services/${node.id}`"
+                    :icon="icons[node.service_type]"
+                    :image="imageById(node.image_id)"
                   />
                 </div>
               </template>
@@ -49,6 +49,7 @@
       <div class="row">
         <div class="col-12">
           <csd-slider-arrows
+            class="mx-auto"
             @prev="handleSlidePrev"
             @next="handleSlideNext"
             v-if="windowSize.width <= 767"
@@ -63,10 +64,10 @@ query {
   allServices {
     edges {
       node {
-        to
-        name
-        image
-        icon
+        id
+        title
+        image_id
+        service_type
       }
     }
   }
@@ -80,16 +81,21 @@ import IconChevronLeft from './icons/IconChevronLeft'
 import IconChevronRight from './icons/IconChevronRight'
 import CsdSliderArrows from './CsdSliderArrows'
 import windowSizeMixin from '../mixins/windowSizeMixin'
+import imageById from '../mixins/imageById'
 
 export default {
   name: 'CsdSectionServices',
-  mixins: [windowSizeMixin],
+  mixins: [windowSizeMixin, imageById],
   components: { CsdSliderArrows, IconChevronRight, IconChevronLeft, CsdServicesItem },
   data() {
     return {
       swiper: null,
       sliderArrowsBreakpoint: 1555,
-      screenSizeEventListener: null
+      screenSizeEventListener: null,
+      icons: {
+        testing: '/assets/img/research.svg',
+        certification: '/assets/img/cert.svg'
+      }
     }
   },
   methods: {
@@ -104,14 +110,13 @@ export default {
     this.swiper = new Swiper('.swiper-services', {
       speed: 400,
       loop: true,
-      slidesPerView: 1,
-      spaceBetween: 10,
+      slidesPerView: 2,
+      spaceBetween: 8,
       breakpoints: {
         320: {
-          slidesPerView: 1,
           spaceBetween: 20
         },
-        768: {
+        576: {
           slidesPerView: 2,
           spaceBetween: 20
         },

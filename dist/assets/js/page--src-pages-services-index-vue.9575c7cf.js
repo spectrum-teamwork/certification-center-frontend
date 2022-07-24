@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[10],{"Tlu/":function(n,e,t){"use strict";t.r(e);var u={name:"Index"},l=t("7uw+"),a=Object(l.a)(u,(function(){var n=this.$createElement;return(this._self._c||n)("Layout")}),[],!1,null,null,null);e.default=a.exports}}]);

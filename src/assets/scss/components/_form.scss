@@ -8,6 +8,9 @@ input, select, textarea {
   &:focus {
     outline: none;
   }
+  @include media-breakpoint-down(xs) {
+    padding: 10px 0;
+  }
 }
 
 select {
@@ -16,6 +19,5 @@ select {
 }
 
 textarea {
-  min-width: 100%;
   min-height: 80px;
 }

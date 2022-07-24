@@ -2,10 +2,10 @@
   <table class="price-list-table">
     <tbody>
     <tr v-for="{node} in $static.allServices.edges">
-      <td class="price-list-table__name" v-text="node.name"></td>
+      <td class="price-list-table__name" v-text="node.title"></td>
       <td class="price-list-table__price">от {{ node.price }} ₽</td>
       <td class="price-list-table__more">
-        <g-link :to="node.to">Подробнее</g-link>
+        <g-link :to="`/services/${node.id}`">Подробнее</g-link>
       </td>
     </tr>
     </tbody>
@@ -23,9 +23,8 @@ query {
     edges {
       node {
         id
-        name
+        title
         price
-        to
       }
     }
   }

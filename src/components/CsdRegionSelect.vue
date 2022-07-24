@@ -40,6 +40,13 @@ query addresses {
 import IconArrowDown from './icons/IconArrowDown'
 
 export default {
-  components: { IconArrowDown }
+  components: { IconArrowDown },
+  methods: {
+    setRegion(regionId) {
+      if (window) {
+        console.log(window)
+      }
+    }
+  }
 }
 </script>

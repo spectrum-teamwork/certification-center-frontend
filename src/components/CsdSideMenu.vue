@@ -9,7 +9,7 @@
         @click="closeMenu"
         :class="{ hidden: !crossIcon }">
         <span v-for="(x, index) in 2" :key="x" class="bm-cross"
-              :style="{ position: 'absolute', width: '3px', height: '50px',transform: index === 1 ? 'rotate(45deg)' : 'rotate(-45deg)'}">
+              :style="{ position: 'absolute', width: '2px', height: '24px',transform: index === 1 ? 'rotate(45deg)' : 'rotate(-45deg)'}">
         </span>
       </span>
     </div>

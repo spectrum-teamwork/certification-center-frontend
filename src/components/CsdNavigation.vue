@@ -28,12 +28,12 @@
         <template v-if="submenu">
           <ul :class="['submenu', {'submenu_visible': menuItemHover}]">
             <li
-              v-for="{to, name} in submenu"
+              v-for="{node} in $static[submenu].edges"
               class="submenu__item">
               <g-link
                 class="submenu__link"
-                :to="to"
-              >{{ name }}
+                :to="`/services/${node.id}`"
+              >{{ node.title }}
               </g-link>
             </li>
           </ul>
@@ -42,7 +42,18 @@
     </ul>
   </nav>
 </template>
-
+<static-query>
+query {
+  allServices {
+    edges {
+      node {
+        id
+        title
+      }
+    }
+  }
+}
+</static-query>
 <script>
 import IconArrowDown from './icons/IconArrowDown'
 
@@ -65,52 +76,7 @@ export default {
           to: '/services',
           name: 'Услуги',
           clickable: false,
-          submenu: [
-            {
-              to: '/services/1',
-              name: 'Испытания косметики'
-            },
-            {
-              to: '/services/2',
-              name: 'Испытания детской продукции'
-            },
-            {
-              to: '/services/3',
-              name: 'Испытания продукции пищевой промышленности'
-            },
-            {
-              to: '/services/4',
-              name: 'Испытания продукции легкой промышленности'
-            },
-            {
-              to: '/services/5',
-              name: 'Испытания продукции для регистрационного удостоверения'
-            },
-            {
-              to: '/services/6',
-              name: 'Сертификация продукции легкой промышленности'
-            },
-            {
-              to: '/services/7',
-              name: 'Сертификация продукции предназначенной для детей и подростков'
-            },
-            {
-              to: '/services/8',
-              name: 'Испытания алкогольной продукции'
-            },
-            {
-              to: '/services/9',
-              name: 'Испытания игрушек'
-            },
-            {
-              to: '/services/10',
-              name: 'Испытания БАДов'
-            },
-            {
-              to: '/services/11',
-              name: 'Испытания упаковки'
-            }
-          ]
+          submenu: 'allServices'
         },
         {
           to: '/prices',

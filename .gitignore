@@ -3,6 +3,8 @@
 .DS_Store
 src/.temp
 node_modules
-dist
+dist1
 .env
 .env.*
+spectrum-teamwork.github.io
+.idea

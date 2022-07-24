@@ -24,6 +24,13 @@
     border: none;
     height: max-content;
 
+    svg {
+      @include media-breakpoint-down(sm) {
+        width: 30px;
+        height: 30px;
+      }
+    }
+
     &:hover {
       background-color: transparent;
     }

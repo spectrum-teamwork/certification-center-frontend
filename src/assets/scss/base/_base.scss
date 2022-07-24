@@ -2,7 +2,7 @@
 @import "typography";
 @import "grid";
 
-*, body {
+*, html, body {
   font-size: var(--base-font-size);
 }
 

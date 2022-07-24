@@ -3,26 +3,28 @@
     :class="['header', {'header_hero': isHero}]">
     <div class="container">
       <div class="row">
-        <div class="col-8 col-sm-5 col-md-4 col-lg-3 col-xxl-2 my-auto">
+        <div class="col-8 col-sm-4 col-md-4 col-lg-3 col-xxl-2 my-auto">
           <div class="logo">
             <g-link to="/">
-              <g-image src="/assets/img/logo.svg" alt="Логотип Центра сертификации и декларирования"/>
+              <g-image quality="80" src="/assets/img/logo.svg" alt="Логотип Центра сертификации и декларирования"/>
             </g-link>
           </div>
         </div>
-        <div class="col-4 col-sm-7 col-md-8 col-xxl-10 align-items-center justify-content-between">
+        <div class="col-4 col-sm-8 col-md-8 col-xxl-10 align-items-center justify-content-between">
           <csd-region-select class="d-none d-sm-flex mx-auto mt-4 mx-sm-0 mt-sm-0 d-xxl-none"/>
           <csd-navigation class="d-none ml-auto d-xxl-flex"/>
           <div class="ml-auto d-xxl-none">
-            <csd-side-menu width="100%">
-              <csd-navigation/>
-            </csd-side-menu>
+            <client-only>
+              <csd-side-menu width="100%">
+                <csd-navigation/>
+              </csd-side-menu>
+            </client-only>
           </div>
         </div>
       </div>
       <div class="row d-sm-none">
         <div class="col-12">
-          <csd-region-select class="mx-auto mt-4"/>
+          <csd-region-select class="mt-4"/>
         </div>
       </div>
       <div class="row d-none d-xxl-flex">

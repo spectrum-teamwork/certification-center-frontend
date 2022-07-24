@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-12 col-lg-2">
           <div class="logo">
-            <img src="/assets/img/logo-white.svg" alt="Логотип Центра сертификации и декларирования">
+            <g-image quality="80" src="/assets/img/logo-white.svg" alt="Логотип Центра сертификации и декларирования"/>
           </div>
         </div>
         <div class="col-12 col-lg-8 offset-lg-2">

@@ -13,15 +13,20 @@
             make a type specimen book.
           </p>
           <div class="hero__actions">
-            <div @click="handleModalOpen" class="button button__order">Заказать</div>
-            <span @click="handleModalOpen" class="hero__link">Проконсультироваться</span>
+            <div @click="handleModalLeaveOrderOpen" class="button button__order">Заказать</div>
+            <span @click="handleModalConsultationOpen" class="hero__link">Проконсультироваться</span>
           </div>
         </div>
       </div>
     </div>
-    <csd-modal v-model="modalVisible">
-      <div class="col-12 col-md-10 col-lg-7 col-xl-9 col-xxl-8 col-xxxl-6 mx-auto">
-        <csd-leave-order-form @close="handleModalClose" closeable class="mx-auto"/>
+    <csd-modal v-model="leaveOrderModalVisible">
+      <div class="col-12 col-md-10 col-lg-10 col-xl-9 col-xxl-8 col-xxxl-7 mx-auto">
+        <csd-leave-order-form @close="handleModalLeaveOrderClose" closeable class="mx-auto"/>
+      </div>
+    </csd-modal>
+    <csd-modal v-model="consultationModalVisible">
+      <div class="col-12 col-md-10 col-lg-10 col-xl-9 col-xxl-8 col-xxxl-7 mx-auto">
+        <csd-consultation-form @close="handleModalConsultationClose" closeable class="mx-auto"/>
       </div>
     </csd-modal>
   </div>
@@ -29,21 +34,29 @@
 <script>
 import CsdModal from './CsdModal'
 import CsdLeaveOrderForm from './CsdLeaveOrderForm'
+import CsdConsultationForm from './CsdConsultationForm'
 
 export default {
   name: 'CsdHero',
-  components: { CsdLeaveOrderForm, CsdModal },
+  components: { CsdConsultationForm, CsdLeaveOrderForm, CsdModal },
   data() {
     return {
-      modalVisible: false
+      leaveOrderModalVisible: false,
+      consultationModalVisible: false,
     }
   },
   methods: {
-    handleModalClose() {
-      this.modalVisible = false
+    handleModalLeaveOrderOpen() {
+      this.leaveOrderModalVisible = true
     },
-    handleModalOpen() {
-      this.modalVisible = true
+    handleModalConsultationOpen() {
+      this.consultationModalVisible = true
+    },
+    handleModalLeaveOrderClose() {
+      this.leaveOrderModalVisible = false
+    },
+    handleModalConsultationClose() {
+      this.consultationModalVisible = false
     }
   }
 }
