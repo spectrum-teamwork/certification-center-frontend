@@ -11,7 +11,7 @@ const server = `http://yarlikvid.ru:8000/api/v1`
 const urls = {
   news: `${server}/news`,
   clients: `${server}/clients`,
-  regions: `${server}/contacts`,
+  regions: `${server}/main/contacts`,
   services: `${server}/services`,
   accreditationInfo: `${server}/accreditation/info`,
   accreditationCertificates: `${server}/accreditation/certificates`
@@ -28,29 +28,8 @@ module.exports = async function (api) {
 
   api.loadSource(async (actions) => {
     const addresses = actions.addCollection({ typeName: 'Addresses' })
-    const _addresses = [
-      {
-        id: 0,
-        city: 'Москва',
-        name: 'Москва, Московская область',
-        region: 'Москва, Московская область',
-        address: 'ул. Проспект Мира, дом 39, строение 2, офис 304 БЦ Олимпик Плаза II',
-        phone: '8 (800) 600-17-44',
-        email: 'krd@csd.expert',
-        maps: 'https://yandex.ru/map-widget/v1/?um=constructor%3Abb4bb561ccd2d0153b4d3a13b5a03ee53517690cfeba519f414eb180cbac8544&amp;source=constructor'
-      },
-      {
-        id: 1,
-        city: 'Краснодар',
-        name: 'Краснодар, Краснодарский край',
-        region: 'Краснодар, Краснодарский край',
-        address: 'ул. Адмирала, Крузенштерна, дом 6',
-        phone: '8 (800) 600-17-44',
-        email: 'krd@csd.expert',
-        maps: 'https://yandex.ru/map-widget/v1/?um=constructor%3Ab897e41dc872e0b0c843bb0379cf1498392b8e4817477ef7c346598bcf021334&amp;source=constructor'
-      }
-    ]
-    _addresses.forEach((address) => addresses.addNode(address))
+    const _addresses = await axios.get(urls.regions)
+    _addresses.data.forEach((address) => addresses.addNode(address))
 
 
     const services = actions.addCollection({ typeName: 'Services' })

@@ -108,14 +108,16 @@ query {
 }
 </static-query>
 <script>
+import Cookies from 'js-cookie'
 import IconClose from './icons/IconClose'
 import CsdButton from './CsdButton'
 import createOrder from '../mixins/createOrder'
+import onRegionUpdate from '../mixins/onRegionUpdate'
 
 export default {
   name: 'CsdLeaveOrderForm',
   components: { CsdButton, IconClose },
-  mixins: [createOrder],
+  mixins: [createOrder, onRegionUpdate],
   props: {
     closeable: {
       type: Boolean,
@@ -131,6 +133,7 @@ export default {
         button_success: false
       },
       form: {
+        contact_id: '',
         service_id: '7334d757-3fae-4b38-8e54-892007162adf',
         contact_name: 'asdfasdf',
         phone: 'sdfasdf',
@@ -143,6 +146,7 @@ export default {
   methods: {
     async onFormSubmit() {
       this.resetSubmitButton()
+      this.form.contact_id = Cookies.get('_region')
       await this.createOrder(this.form)
     },
     resetSubmitButton(timeout = 0) {
@@ -173,6 +177,11 @@ export default {
         }
       }
     }
+  },
+  mounted() {
+    addEventListener('onregionupdate', (event) => {
+      this.form.contact_id = event.detail.regionId
+    })
   }
 }
 </script>

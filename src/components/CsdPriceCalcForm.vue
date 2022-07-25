@@ -18,7 +18,7 @@
       type="text"
       name="fullname"
       placeholder="Имя"
-      v-model="form.fullname"
+      v-model="form.contact_name"
       class="price-calc-form__input-name"
     >
     <input
@@ -45,10 +45,12 @@ query {
 </static-query>
 <script>
 import createOrder from '../mixins/createOrder'
+import onRegionUpdate from '../mixins/onRegionUpdate'
+import Cookies from 'js-cookie'
 
 export default {
   name: 'CsdPriceCalcForm',
-  mixins: [createOrder],
+  mixins: [createOrder, onRegionUpdate],
   data() {
     return {
       submitButtonTimeout: null,
@@ -58,15 +60,17 @@ export default {
         'price-calc-form__button_success': false
       },
       form: {
+        contact_id: '',
         service_id: undefined,
-        contact_name: 'asdfasdf',
-        phone: 'sdfasdf'
+        contact_name: '',
+        phone: ''
       }
     }
   },
   methods: {
     async onFormSubmit() {
       this.resetSubmitButton()
+      this.form.contact_id = Cookies.get('_region')
       await this.createOrder(this.form)
     },
     resetSubmitButton(timeout = 0) {
@@ -99,6 +103,9 @@ export default {
     }
   },
   mounted() {
+    addEventListener('onregionupdate', (event) => {
+      this.form.contact_id = event.detail.regionId
+    })
     if (this.$refs?.serviceIdInput) {
       this.form.service_id = this.$refs.serviceIdInput.value
     }

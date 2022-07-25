@@ -43,18 +43,6 @@
     <slot name="hero"/>
   </header>
 </template>
-<static-query>
-query {
-  allAddresses {
-    edges {
-      node {
-        id
-        name
-      }
-    }
-  }
-}
-</static-query>
 <script>
 import CsdRegionSelect from './CsdRegionSelect'
 import CsdNavigation from './CsdNavigation'

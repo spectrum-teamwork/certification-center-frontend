@@ -79,14 +79,16 @@ query {
 }
 </static-query>
 <script>
+import Cookies from 'js-cookie'
 import IconClose from './icons/IconClose'
 import CsdButton from './CsdButton'
 import createOrder from '../mixins/createOrder'
+import onRegionUpdate from '../mixins/onRegionUpdate'
 
 export default {
   name: 'CsdConsultationForm',
   components: { CsdButton, IconClose },
-  mixins: [createOrder],
+  mixins: [createOrder, onRegionUpdate],
   props: {
     closeable: {
       type: Boolean,
@@ -102,6 +104,7 @@ export default {
         button_success: false
       },
       form: {
+        contact_id: '',
         contact_name: '',
         phone: '',
         comment: '',
@@ -112,6 +115,7 @@ export default {
   methods: {
     async onFormSubmit() {
       this.resetSubmitButton()
+      this.form.contact_id = Cookies.get('_region')
       await this.createOrder(this.form)
     },
     resetSubmitButton(timeout = 0) {
@@ -142,6 +146,11 @@ export default {
         }
       }
     }
+  },
+  mounted() {
+    addEventListener('onregionupdate', (event) => {
+      this.form.contact_id = event.detail.regionId
+    })
   }
 }
 </script>
