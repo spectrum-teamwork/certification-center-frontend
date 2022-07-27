@@ -50,6 +50,7 @@ query {
       node {
         id
         label
+        image_id
       }
     }
   }
