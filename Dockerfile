@@ -13,6 +13,8 @@ WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN npm install
 
+ARG CACHEBUST=1
+
 COPY . ./
 RUN npm run build
 
