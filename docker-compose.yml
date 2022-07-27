@@ -6,7 +6,7 @@ services:
     build:
       context: .
       args:
-        - CACHEBUST=$(date +%s)
+        - CACHEBUST=$$(date +%s)
       dockerfile: ./Dockerfile
     ports:
       - 8777:80
