@@ -8,3 +8,4 @@ dist1
 .env.*
 spectrum-teamwork.github.io
 .idea
+.vscode
