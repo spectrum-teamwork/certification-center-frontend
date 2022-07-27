@@ -1,48 +1,29 @@
 <template>
-  <div class="region" :key="currentRegionId">
+  <div class="region" :key="currentRegionId" v-if="setRegionsList($static.allAddresses.edges)">
     <div class="region__link">
-      <span hidden v-if="currentRegionId === undefined && setDefaultRegion($static.allAddresses)"></span>
-      <template v-for="({node}, index) in $static.allAddresses.edges">
-        <span
-          v-if="currentRegionId !== undefined && node.id === currentRegionId"
-          class="link__text">
-          {{ $static.allAddresses.edges[index].node.region }}
-        </span>
-        <span
-          v-else-if="currentRegionId === undefined && index === defaultRegionIndex"
-          class="link__text">
-          {{ $static.allAddresses.edges[defaultRegionIndex].node.region }}
-        </span>
-      </template>
+      <span
+        class="link__text">
+        {{ currentRegionName }}
+      </span>
       <div class="dropdown-arrow">
         <icon-arrow-down/>
       </div>
     </div>
     <ul class="region__list">
-      <template v-for="({node}, index) in $static.allAddresses.edges">
+      <template v-for="({node}, index) in regionsListOrder">
         <li
-          v-if="regionIsActive(node.id, index)"
           @click="setRegion(node.id)"
-          :class="['region__item', 'region__link']"
+          :class="['region__item', {'region__link': node.id === currentRegionId}]"
         >
           <span class="link__text">{{ node.region }}</span>
-          <div class="dropdown-arrow">
+          <div v-if="node.id === currentRegionId" class="dropdown-arrow">
             <icon-arrow-down/>
           </div>
         </li>
         <li
           class="region__divider"
-          v-if="regionIsActive(node.id, index)"
+          v-if="index !== regionsListOrder.length - 1"
         />
-      </template>
-      <template v-for="({node}, index) in $static.allAddresses.edges">
-        <li
-          v-if="!regionIsActive(node.id, index)"
-          @click="setRegion(node.id)"
-          :class="['region__item']"
-        >
-          <span class="link__text">{{ node.region }}</span>
-        </li>
       </template>
     </ul>
   </div>
@@ -67,25 +48,42 @@ export default {
   components: { IconArrowDown },
   data() {
     return {
-      currentRegionId: null,
+      regionsList: [],
+      currentRegionId: undefined,
       defaultRegionIndex: 0
     }
   },
   methods: {
     setDefaultRegion(regions) {
-      this.setRegion(regions.edges[this.defaultRegionIndex].node.id)
-      return false
+      if (this.currentRegionId === undefined) {
+        this.setRegion(regions[this.defaultRegionIndex].node.id)
+      }
+      return true
+    },
+    setRegionsList(regions) {
+      this.regionsList = regions
+      this.setDefaultRegion(this.regionsList)
+      return true
     },
     setRegion(regionId) {
       Cookies.set('_region', regionId)
       this.currentRegionId = regionId
+    }
+  },
+  computed: {
+    currentRegionName() {
+      const r = this.regionsList.find((edge) => {
+        return edge.node.id === this.currentRegionId
+      })
+      return r.node.region
     },
-    regionIsActive(regionId, index) {
-      if (this.currentRegionId !== undefined) {
-        return this.currentRegionId === regionId
-      } else if (this.currentRegionId === undefined && index === this.defaultRegionIndex) {
-        return true
+    regionsListOrder() {
+      if (this.currentRegionId === undefined) {
+        return this.regionsList
       }
+      const result = this.regionsList.filter((edge) => edge.node.id !== this.currentRegionId)
+      result.unshift(this.regionsList.find((edge) => edge.node.id === this.currentRegionId))
+      return result
     }
   },
   watch: {
