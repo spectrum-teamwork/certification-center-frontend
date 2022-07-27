@@ -5,6 +5,8 @@ services:
     image: certificationcenterfrontend
     build:
       context: .
+      args:
+        - CACHEBUST=$(date +%s)
       dockerfile: ./Dockerfile
     ports:
       - 8777:80
