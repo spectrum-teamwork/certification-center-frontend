@@ -1,17 +1,23 @@
 <template>
   <Layout>
     <csd-empty-page
-      title="www"
-      content="rrrr"
+      :title="privacy.title"
+      :content="privacy.content"
     />
   </Layout>
 </template>
 
 <script>
+import privacy from './privacy.json'
 import CsdEmptyPage from '../components/CsdEmptyPage'
 
 export default {
   name: 'PrivacyPolicy',
-  components: { CsdEmptyPage }
+  components: { CsdEmptyPage },
+  data() {
+    return {
+      privacy
+    }
+  }
 }
 </script>

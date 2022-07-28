@@ -1,20 +1,23 @@
 <template>
   <Layout>
     <csd-empty-page
-      title="asdasd"
-      content="adasd"
+      :title="user.title"
+      :content="user.content"
     />
   </Layout>
 </template>
+
 <script>
+import user from './user.json'
 import CsdEmptyPage from '../components/CsdEmptyPage'
 
 export default {
   name: 'UserAgreement',
-  components: { CsdEmptyPage }
+  components: { CsdEmptyPage },
+  data() {
+    return {
+      user
+    }
+  }
 }
 </script>
-
-<style lang="scss">
-
-</style>
