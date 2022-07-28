@@ -3,8 +3,8 @@
     <div class="price-calc-form__heading">
       Рассчитать стоимость
     </div>
-    <select required v-if="$context.serviceId === undefined">
-      <option disabled hidden selected>Выберите услугу из списка</option>
+    <select required v-model="form.service_id" v-if="$context.serviceId === undefined">
+      <option disabled hidden selected value="7334d757-3fae-4b38-8e54-892007162adf">Выберите услугу из списка</option>
       <option
         :value="node.id"
         v-model="form.serviceId"
@@ -61,7 +61,7 @@ export default {
       },
       form: {
         contact_id: '',
-        service_id: undefined,
+        service_id: '7334d757-3fae-4b38-8e54-892007162adf',
         contact_name: '',
         phone: ''
       }

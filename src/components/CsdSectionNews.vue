@@ -28,7 +28,7 @@
                         {{ node.title }}
                       </div>
                       <p class="post__highlight">
-                        {{ node.text }}
+                        {{ node.short_text }}
                       </p>
                       <g-link :to="`/news/${node.id}`" class="post__link">Подробнее</g-link>
                     </div>
@@ -57,9 +57,9 @@ query {
     edges {
       node {
         id
-        text
         title
         image_id
+        short_text
       }
     }
   }

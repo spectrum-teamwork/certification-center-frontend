@@ -47,7 +47,11 @@ module.exports = async function (api) {
 
     const news = actions.addCollection({ typeName: 'News' })
     const _news = await axios.get(urls.news)
-    _news.data.forEach((event) => news.addNode(event))
+    for (const datum of _news.data) {
+      const fullNews = await axios.get(`${urls.news}/${datum.id}`)
+      const result = { ...fullNews.data, short_text: datum.text }
+      news.addNode(result)
+    }
 
     const hero = actions.addCollection({ typeName: 'Hero' })
     const _hero = await axios.get(urls.hero)
