@@ -1,7 +1,7 @@
 <template>
   <form class="price-calc-form" @submit.prevent="onFormSubmit">
     <div class="price-calc-form__heading">
-      Рассичтать стоимость
+      Рассчитать стоимость
     </div>
     <select required v-if="$context.serviceId === undefined">
       <option disabled hidden selected>Выберите услугу из списка</option>
