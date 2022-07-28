@@ -13,7 +13,7 @@ WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN npm install
 
-ARG CACHEBUST=1
+ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 
 COPY . ./
 RUN npm run build
