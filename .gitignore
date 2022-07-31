@@ -4,8 +4,6 @@
 src/.temp
 node_modules
 dist1
-.env
-.env.*
 spectrum-teamwork.github.io
 .idea
 .vscode

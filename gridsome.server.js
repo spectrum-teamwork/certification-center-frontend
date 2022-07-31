@@ -7,7 +7,7 @@
 const axios = require('axios')
 const { createProxyMiddleware } = require('http-proxy-middleware')
 
-const server = `http://yarlikvid.ru:8000/api/v1`
+const server = `${process.env.GRIDSOME_API_URL}`
 const urls = {
   news: `${server}/news`,
   clients: `${server}/clients`,
