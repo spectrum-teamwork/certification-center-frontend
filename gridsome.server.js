@@ -21,8 +21,7 @@ const urls = {
 module.exports = async function (api) {
   api.configureServer(app => {
     app.use(createProxyMiddleware('/api/v1', {
-      // if you have a .env file, set this variable to something like http://localhost:1337 (I used Strapi)
-      target: 'http://yarlikvid.ru:8000',
+      target: process.env.GRIDSOME_API_HOST,
       changeOrigin: true
     }))
   })
