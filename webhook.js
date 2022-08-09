@@ -17,26 +17,30 @@ const requestListener = function (req, res) {
     console.log(secretKeyRequest)
     if (secretKeyRequest == secretKey) {
         // Здесь название команды
-        res.end('Access granted. Starting build ...')
         exec("npm run build", (error, stdout, stderr) => {
+            console.log('запустили')
             if (error) {
+                console.log('ошибка')
+                console.log(error)
+                console.log(error.message)
                 res.end(`error: ${error.message}`)
                 return;
             }
 
             else if (stderr) {
+                console.log('другая ошибка')
+                console.log(stderr)
                 res.end(`stderr: ${stderr}`)
                 return;
             }
-            res.end(`welldone`)
+            console.log('вроде как все ок')
+            res.end(`${stdout}`)
             return;
         });
     } else {
         res.end('Missing secret key')
         return;
     }
-    res.end('End of File')
-    return;
 };
 
 const server = http.createServer(requestListener);
