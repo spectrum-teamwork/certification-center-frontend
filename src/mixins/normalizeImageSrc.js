@@ -1,8 +1,11 @@
 export default {
   methods: {
     normalizeImageSrc(url) {
-      const _url = new URL(url)
-      return _url.pathname
+      if (!url) return url
+      if (url.startsWith('http://backend')) {
+        return url.split('//backend')[1]
+      }
+      return url
     }
   }
 }
