@@ -2,7 +2,7 @@
 const http = require("http");
 const url = require("url");
 const host = 'frontend';
-const port = process.env.WEBHOOK_PORT || 80;
+const port = 8888;
 const { exec } = require("child_process");
 
 const requestListener = function (req, res) {
