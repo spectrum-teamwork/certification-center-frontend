@@ -4,7 +4,7 @@
       <csd-news-post
         :title="$page.news.title"
         :content="$page.news.text"
-        :image-id="$page.news.image"
+        :image="$page.news.image"
       />
     </template>
   </Layout>
